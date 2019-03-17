@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * 
  * @author Marcelo Garbin
@@ -8,53 +10,29 @@
  */
 public class CarrinhoDeCompras {
 	
-	Pizza pizza;
-	static Integer totalPizzas = 0;
-	static Double valorTotalPizzas = 0.0;
+	static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
 	
 	public CarrinhoDeCompras() {}
 	
-	public CarrinhoDeCompras(Pizza pizza) {
-		this.pizza = pizza;
-	}
-	
 	public void adicionaCarrinho(Pizza pizza) {
-		// Variaveis da pizza
-		Integer qtdIngredientes = pizza.qtdIngredientes;
-		
 		// Verifica se a pizza possui ingredientes
-		// Se for > 0 incrementa total de pizzas
-		if(qtdIngredientes > 0) {
-			Double precoPizza = pizza.getPreco(qtdIngredientes);	
-			// Incrementa total de pizzas
-			totalPizzas++;
-			// Incrementa valor total das pizzas
-			valorTotalPizzas += precoPizza;
-			
-			// Passa variaveis para parcial
-			// (EXTRA) Descomentar linha abaixo para ver parciais!
-			//getParcial(qtdIngredientes, precoPizza);
-		}
-	}
-	
-	private void getParcial(Integer qtdIngredientes, Double precoPizza) {
-		System.out.println("Produto Adicionado ao carrinho: \n" +
-				"Pizza: 01 \n" +
-				"Quantidade Ingredientes: "	+ qtdIngredientes  + "\n" +
-				"Valor Pizza: "	+ String.format("%.2f", precoPizza) + "\n" +
-				"================================ \n"
-		);
+		// Se for > 0 adiciona a pizza ao ArrayList
+		if(pizza.getQtdIngrediente() > 0)
+			pizzas.add(pizza);
 	}
 
-	public String getTotalPizzas() {
-		return totalPizzas.toString();
+	public Integer getTotalPizzas() {
+		return pizzas.size();
 	}
 	
 	public String getTotalValorPizzas() {
+		// Cria uma variavel para o total
+		Double valorTotalPizzas = 0.0;
+		// Percorre a lista e incrementa a variavel
+		for(Pizza pizza : pizzas) {
+			valorTotalPizzas += pizza.getPreco(pizza.getQtdIngrediente());
+		}
+		// retorna a variavel formatada como String
 		return String.format("%.2f", valorTotalPizzas);
-	}
-	
-	public void getIngredientes() {
-		Pizza.totalIngredientes.forEach((k, v)->System.out.println("- " + k + ": " + v));
 	}
 }

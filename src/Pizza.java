@@ -52,4 +52,8 @@ public class Pizza {
 	public Integer getQtdIngrediente() {
 		return this.qtdIngredientes;
 	}
+	
+	public static void getIngredientes() {
+		Pizza.totalIngredientes.forEach((k, v)->System.out.println("- " + k + ": " + v));
+	}
 }

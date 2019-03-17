@@ -21,14 +21,13 @@ public class Principal {
 		
 		// Adiciona pizza 01 no carrinhoCompras
 		carrinhoCompras.adicionaCarrinho(p1);
-		
+
 		Pizza p2 = new Pizza();
 		p2.adicionaIngrediente("Cebola");
 		p2.adicionaIngrediente("Calabresa");
 		
 		// Adiciona pizza 02 no carrinhoCompras
 		carrinhoCompras.adicionaCarrinho(p2);
-		
 		
 		Pizza p3 = new Pizza();
 		p3.adicionaIngrediente("Chocolate Branco");
@@ -42,12 +41,14 @@ public class Principal {
 		carrinhoCompras.adicionaCarrinho(p3);
 		
 		System.out.println("======= Carrinho de Compras =======");
-		System.out.println("Total de Pizzas Adicionadas ao Carrinho: " + carrinhoCompras.getTotalPizzas());
-		System.out.println("Valor Total das Pizzas: R$" + carrinhoCompras.getTotalValorPizzas() + "\n");
-		System.out.println("======= Total de Ingredientes Utilizados =======");
-		carrinhoCompras.getIngredientes();
+		if(carrinhoCompras.getTotalPizzas() > 0) {
+			System.out.println("Total de Pizzas Adicionadas ao Carrinho: " + carrinhoCompras.getTotalPizzas());
+			System.out.println("Valor Total das Pizzas: R$ " + carrinhoCompras.getTotalValorPizzas() + "\n");
+			System.out.println("======= Total de Ingredientes Utilizados =======");
+			Pizza.getIngredientes();
+		} else {
+			System.out.println("Carrinho vazio!");
+		}
 		System.out.println("================================================");
-		
 	}
-
 }
