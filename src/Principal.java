@@ -21,7 +21,7 @@ public class Principal {
 		
 		// Adiciona pizza 01 no carrinhoCompras
 		carrinhoCompras.adicionaCarrinho(p1);
-
+		
 		Pizza p2 = new Pizza();
 		p2.adicionaIngrediente("Cebola");
 		p2.adicionaIngrediente("Calabresa");
@@ -43,12 +43,14 @@ public class Principal {
 		System.out.println("======= Carrinho de Compras =======");
 		if(carrinhoCompras.getTotalPizzas() > 0) {
 			System.out.println("Total de Pizzas Adicionadas ao Carrinho: " + carrinhoCompras.getTotalPizzas());
-			System.out.println("Valor Total das Pizzas: R$ " + carrinhoCompras.getTotalValorPizzas() + "\n");
+			System.out.println("Valor Total das Pizzas: R$ " + String.format("%.2f", carrinhoCompras.getTotalValorPizzas()) + "\n");
 			System.out.println("======= Total de Ingredientes Utilizados =======");
 			Pizza.getIngredientes();
 		} else {
 			System.out.println("Carrinho vazio!");
 		}
 		System.out.println("================================================");
+
 	}
+	
 }

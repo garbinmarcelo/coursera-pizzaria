@@ -4,9 +4,6 @@ import java.util.ArrayList;
  * 
  * @author Marcelo Garbin
  * 
- * Crie uma nova classe chamada CarrinhoDeCompras que |pode receber objetos da classe Pizza|. 
- * Ela deve ter um método que |retorna o valor total de todas as pizzas adicionadas|.  -ok
- * O Carrinho não pode aceitar que seja adicionada uma pizza sem ingredientes. - ok
  */
 public class CarrinhoDeCompras {
 	
@@ -14,25 +11,34 @@ public class CarrinhoDeCompras {
 	
 	public CarrinhoDeCompras() {}
 	
-	public void adicionaCarrinho(Pizza pizza) {
+	public boolean adicionaCarrinho(Pizza pizza) {
 		// Verifica se a pizza possui ingredientes
-		// Se for > 0 adiciona a pizza ao ArrayList
-		if(pizza.getQtdIngrediente() > 0)
-			pizzas.add(pizza);
+		// Se for igual a 0 não adiciona a pizza ao ArrayList e retorna false
+		if(pizza.getQtdIngredientes() == 0)
+			return false;
+		
+		// Adiciona ao ArrayList
+		pizzas.add(pizza);
+		return true;
 	}
 
 	public Integer getTotalPizzas() {
 		return pizzas.size();
 	}
 	
-	public String getTotalValorPizzas() {
+	public Double getTotalValorPizzas() {
 		// Cria uma variavel para o total
 		Double valorTotalPizzas = 0.0;
 		// Percorre a lista e incrementa a variavel
 		for(Pizza pizza : pizzas) {
-			valorTotalPizzas += pizza.getPreco(pizza.getQtdIngrediente());
+			valorTotalPizzas += pizza.getPreco(pizza.getQtdIngredientes());
 		}
-		// retorna a variavel formatada como String
-		return String.format("%.2f", valorTotalPizzas);
+	
+		return valorTotalPizzas;
+	}
+	
+	// Limpa todos os elementos do Array
+	public static void zeraCarrinho() {
+		CarrinhoDeCompras.pizzas.clear();
 	}
 }
